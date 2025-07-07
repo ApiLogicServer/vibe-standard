@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Northwind Analytics - Home{% endblock %}
+
+{% block header %}Welcome to Northwind Analytics{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="jumbotron bg-primary text-white p-5 rounded">
+            <h1 class="display-4">Northwind Database Analytics</h1>
+            <p class="lead">Explore and analyze the classic Northwind sample database with interactive dashboards and data visualizations.</p>
+            <hr class="my-4">
+            <p>Get insights into customers, orders, products, and sales performance with our comprehensive analytics platform.</p>
+            <a class="btn btn-light btn-lg" href="/dashboard" role="button">
+                <i class="fas fa-chart-line"></i> View Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                <h5 class="card-title">Customers</h5>
+                <p class="card-text">Explore customer demographics and purchase patterns</p>
+                <a href="/customers" class="btn btn-primary">View Customers</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-box fa-3x text-success mb-3"></i>
+                <h5 class="card-title">Products</h5>
+                <p class="card-text">Browse product catalog and sales performance</p>
+                <a href="/products" class="btn btn-success">View Products</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-shopping-cart fa-3x text-warning mb-3"></i>
+                <h5 class="card-title">Orders</h5>
+                <p class="card-text">Review order history and trends</p>
+                <a href="/orders" class="btn btn-warning">View Orders</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-chart-bar fa-3x text-info mb-3"></i>
+                <h5 class="card-title">Analytics</h5>
+                <p class="card-text">Advanced analytics and visualizations</p>
+                <a href="/analytics" class="btn btn-info">View Analytics</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h3>Features</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Interactive Data Visualizations</li>
+                    <li><i class="fas fa-check text-success"></i> Real-time Analytics Dashboard</li>
+                    <li><i class="fas fa-check text-success"></i> Customer Segmentation Analysis</li>
+                    <li><i class="fas fa-check text-success"></i> Product Performance Metrics</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Sales Trend Analysis</li>
+                    <li><i class="fas fa-check text-success"></i> RESTful API Access</li>
+                    <li><i class="fas fa-check text-success"></i> Jupyter Notebook Integration</li>
+                    <li><i class="fas fa-check text-success"></i> Responsive Web Interface</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

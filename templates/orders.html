@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Orders - Northwind Analytics{% endblock %}
+
+{% block header %}Order Management{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4><i class="fas fa-shopping-cart"></i> Recent Orders</h4>
+                <div>
+                    <span class="badge bg-warning">{{ orders|length if orders else 0 }} Orders Shown</span>
+                </div>
+            </div>
+            
+            {% if orders %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Employee ID</th>
+                            <th>Order Date</th>
+                            <th>Ship City</th>
+                            <th>Ship Country</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td><code>{{ order.Id }}</code></td>
+                            <td><strong>{{ order.CustomerName or 'N/A' }}</strong></td>
+                            <td>{{ order.EmployeeId or 'N/A' }}</td>
+                            <td>{{ order.OrderDate or 'N/A' }}</td>
+                            <td>{{ order.ShipCity or 'N/A' }}</td>
+                            <td>{{ order.ShipCountry or 'N/A' }}</td>
+                            <td>
+                                {% if order.AmountTotal %}
+                                    ${{ "%.2f"|format(order.AmountTotal) }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if order.ShippedDate %}
+                                    <span class="badge bg-success">Shipped</span>
+                                {% elif order.Ready %}
+                                    <span class="badge bg-warning">Ready</span>
+                                {% else %}
+                                    <span class="badge bg-info">Processing</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No orders found in the database.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="chart-container">
+            <h5><i class="fas fa-chart-line"></i> Order Statistics</h5>
+            {% if orders %}
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <i class="fas fa-shopping-cart text-primary"></i> 
+                    <strong>Total Orders:</strong> {{ orders | length }}
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-check-circle text-success"></i> 
+                    <strong>Shipped Orders:</strong> {{ orders | selectattr('ShippedDate') | list | length }}
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-clock text-warning"></i> 
+                    <strong>Pending Orders:</strong> {{ orders | rejectattr('ShippedDate') | list | length }}
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-dollar-sign text-info"></i> 
+                    <strong>Total Value:</strong> ${{ "%.2f"|format(orders | sum(attribute='AmountTotal') or 0) }}
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="chart-container">
+            <h5><i class="fas fa-globe"></i> Shipping Destinations</h5>
+            {% if countries %}
+            <div class="row">
+                {% for country, count in countries.items() %}
+                <div class="col-6 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <span>{{ country }}</span>
+                        <span class="badge bg-secondary">{{ count }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any order-specific JavaScript here
+    console.log('Orders page loaded');
+</script>
+{% endblock %}

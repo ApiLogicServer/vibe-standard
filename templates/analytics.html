@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Northwind Analytics{% endblock %}
+
+{% block header %}Advanced Analytics{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart-container">
+            <h4><i class="fas fa-chart-bar"></i> Sales Analytics Dashboard</h4>
+            <p class="text-muted">Comprehensive analysis of sales performance, trends, and key metrics.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="chart-container">
+            <h5><i class="fas fa-calendar"></i> Sales by Month</h5>
+            {% if sales_by_month %}
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in sales_by_month %}
+                        <tr>
+                            <td>{{ item.month }}</td>
+                            <td>${{ "%.2f"|format(item.revenue) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No monthly sales data available.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="chart-container">
+            <h5><i class="fas fa-trophy"></i> Top Products</h5>
+            {% if top_products %}
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Revenue</th>
+                            <th>Qty Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in top_products %}
+                        <tr>
+                            <td>{{ product.product_name }}</td>
+                            <td>${{ "%.2f"|format(product.revenue) }}</td>
+                            <td>{{ product.quantity_sold }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No top products data available.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart-container">
+            <h5><i class="fas fa-tags"></i> Sales by Category</h5>
+            {% if sales_by_category %}
+            <div class="row">
+                {% for category in sales_by_category %}
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">{{ category.category_name or 'Unknown' }}</h6>
+                            <h4 class="text-primary">${{ "%.2f"|format(category.revenue) }}</h4>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No category sales data available.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart-container">
+            <h5><i class="fas fa-lightbulb"></i> Key Insights</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="alert alert-primary">
+                        <h6><i class="fas fa-chart-line"></i> Revenue Trends</h6>
+                        <p class="mb-0">Analyze monthly sales patterns to identify peak seasons and growth opportunities.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-star"></i> Best Performers</h6>
+                        <p class="mb-0">Top-selling products drive the majority of revenue and should be prioritized.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-users"></i> Customer Focus</h6>
+                        <p class="mb-0">Understanding customer behavior helps optimize inventory and marketing strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart-container">
+            <h5><i class="fas fa-download"></i> Export Data</h5>
+            <p>Access raw data through our API endpoints:</p>
+            <div class="btn-group" role="group">
+                <a href="/api/analytics/sales-by-month" class="btn btn-outline-primary" target="_blank">
+                    <i class="fas fa-calendar"></i> Monthly Sales
+                </a>
+                <a href="/api/analytics/top-products" class="btn btn-outline-success" target="_blank">
+                    <i class="fas fa-trophy"></i> Top Products
+                </a>
+                <a href="/api/analytics/sales-by-category" class="btn btn-outline-info" target="_blank">
+                    <i class="fas fa-tags"></i> Category Sales
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any analytics-specific JavaScript here
+    console.log('Analytics page loaded');
+</script>
+{% endblock %}

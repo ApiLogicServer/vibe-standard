@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Northwind Analytics{% endblock %}
+
+{% block header %}Product Catalog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4><i class="fas fa-box"></i> Product Inventory</h4>
+                <div>
+                    <span class="badge bg-success">{{ products|length if products else 0 }} Total Products</span>
+                </div>
+            </div>
+            
+            {% if products %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Supplier</th>
+                            <th>Unit Price</th>
+                            <th>In Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td><code>{{ product.Id }}</code></td>
+                            <td><strong>{{ product.ProductName or 'N/A' }}</strong></td>
+                            <td>{{ product.CategoryName or 'N/A' }}</td>
+                            <td>{{ product.SupplierName or 'N/A' }}</td>
+                            <td>
+                                {% if product.UnitPrice %}
+                                    ${{ "%.2f"|format(product.UnitPrice) }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="badge {% if product.UnitsInStock and product.UnitsInStock > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                    {{ product.UnitsInStock or 0 }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if product.Discontinued %}
+                                    <span class="badge bg-danger">Discontinued</span>
+                                {% else %}
+                                    <span class="badge bg-success">Active</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No products found in the database.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="chart-container">
+            <h5><i class="fas fa-tags"></i> Categories</h5>
+            {% if categories %}
+            <div class="row">
+                {% for category in categories %}
+                <div class="col-12 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <span>{{ category.CategoryName or 'Unknown' }}</span>
+                        <span class="badge bg-primary">{{ category.Id }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="chart-container">
+            <h5><i class="fas fa-chart-bar"></i> Inventory Summary</h5>
+            {% if products %}
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <i class="fas fa-box text-primary"></i> 
+                    <strong>Total Products:</strong> {{ products | length }}
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-check-circle text-success"></i> 
+                    <strong>Active Products:</strong> {{ products | rejectattr('Discontinued') | list | length }}
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-times-circle text-danger"></i> 
+                    <strong>Discontinued:</strong> {{ products | selectattr('Discontinued') | list | length }}
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-warehouse text-info"></i> 
+                    <strong>Total Stock:</strong> {{ products | sum(attribute='UnitsInStock') or 0 }}
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any product-specific JavaScript here
+    console.log('Products page loaded');
+</script>
+{% endblock %}
