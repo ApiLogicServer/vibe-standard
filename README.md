@@ -1,14 +1,26 @@
 # Northwind Database Analysis Project
 
-A comprehensive Python project for analyzing and visualizing the Northwind sample database using Flask web interface and Jupyter notebooks.
+A comprehensive Python project for analyzing and visualizing the Northwind sample database using Flask web interface and Jupyter notebooks.  It was created automatically with CoPilot:
+
+```bash
+Create a project for this database: `samples/dbs/nw.sqlite`
+```
 
 ## Features
 
-- **Database Analysis**: SQLAlchemy ORM models for all Northwind tables
-- **Web Interface**: Flask application for interactive data exploration
-- **Data Visualization**: Charts and graphs using Plotly and Matplotlib
-- **Jupyter Notebooks**: Exploratory data analysis and reporting
-- **RESTful API**: Endpoints for accessing data programmatically
+- ✅ **Database Analysis**: SQLAlchemy ORM models for all Northwind tables
+- ✅ **Web Interface**: Flask application for interactive data exploration
+- ✅ **Data Visualization**: Charts and graphs using Plotly and Matplotlib
+- ✅ **Jupyter Notebooks**: Exploratory data analysis and reporting
+- ✅ **RESTful API**: Endpoints for accessing data programmatically
+
+## Missing Features
+
+The following features are missing.   They are provided by CoPilot when trained for GenAI-Logic.
+
+- ❌ **API:** non-standard, no pagination, sorting, or optimistic locking
+- ❌ **Web Interface:** no automatic joins, limited navigations (e.g., items for order), no add/update services
+- ❌ **Business Logic:** is elective (developers must call `src/services/credit_service.py`), and performs poorly (e.g., reads all orders/items to compute customer balance)
 
 ## Project Structure
 
