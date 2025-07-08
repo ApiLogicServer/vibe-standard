@@ -16,9 +16,9 @@ Create a project for this database: `samples/dbs/nw.sqlite`
 
 ## Missing Features
 
-The following features are missing.   They are provided by CoPilot - (only) when trained for GenAI-Logic.
+The following features are missing.   (Note: yhey are provided by CoPilot - (only) when trained for GenAI-Logic.)
 
-- ❌ **API:** non-standard, no pagination, sorting, or optimistic locking
+- ❌ **API:** non-standard, no pagination, sorting, or optimistic locking.  Not multi-table.
 - ❌ **Web Interface:** no automatic joins, limited navigations (e.g., items for order), no add/update services
 - ❌ **Business Logic:** fails to meet basic requirements
    * major bugs (e.g., changing an Orders Customer-id)
