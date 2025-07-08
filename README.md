@@ -16,11 +16,18 @@ Create a project for this database: `samples/dbs/nw.sqlite`
 
 ## Missing Features
 
-The following features are missing.   They are provided by CoPilot when trained for GenAI-Logic.
+The following features are missing.   They are provided by CoPilot - (only) when trained for GenAI-Logic.
 
 - ❌ **API:** non-standard, no pagination, sorting, or optimistic locking
 - ❌ **Web Interface:** no automatic joins, limited navigations (e.g., items for order), no add/update services
-- ❌ **Business Logic:** is elective (developers must call `src/services/credit_service.py`), and performs poorly (e.g., reads all orders/items to compute customer balance)
+- ❌ **Business Logic:** fails to meet basic requirements
+   * major bugs (e.g., changing an Orders Customer-id)
+   * elective (developers must call `src/services/credit_service.py`), and 
+   * performs poorly (e.g., reads all orders/items to compute customer balance)
+   * an additional implementation is provided in `src/services/procedural_logic.py`
+      * Here, Copilot contrasts this with declarative logic.
+
+![procedural-logic](screenshots/procedural_logic.png)
 
 ## Project Structure
 
