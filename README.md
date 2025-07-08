@@ -25,7 +25,7 @@ The following features are missing.   (Note: yhey are provided by CoPilot - (onl
    * elective (developers must call `src/services/credit_service.py`), and 
    * performs poorly (e.g., reads all orders/items to compute customer balance)
    * an additional implementation is provided in `src/services/procedural_logic.py`
-      * Here, Copilot contrasts this with declarative logic.
+      * Here, Copilot contrasts procedural vs. declarative logic:
 
 ![procedural-logic](screenshots/procedural_logic.png)
 
