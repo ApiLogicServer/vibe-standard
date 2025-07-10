@@ -18,7 +18,7 @@ Create a project for this database: `samples/dbs/nw.sqlite`
 
 ## Missing Features
 
-This readme was created by CoPilot, except for this an the next section, where we evaluated the implementation.
+> This readme was created by CoPilot, except for this and the next section, where we evaluated the implementation.
 
 The following features are missing.   (Note: they are provided by CoPilot - (only) when trained for GenAI-Logic.)
 
@@ -29,7 +29,8 @@ The following features are missing.   (Note: they are provided by CoPilot - (onl
    * performs poorly (e.g., reads all orders/items to compute customer balance)
 
 <br>
-## CoPilot concludes logic should be *declarative*
+
+### CoPilot concludes logic should be *declarative*
 
 An additional implementation is provided in `src/services/procedural_logic.py` - we asked CoPilot to implement logic via procedural code (not use Logic Bank).
 
