@@ -14,20 +14,30 @@ Create a project for this database: `samples/dbs/nw.sqlite`
 - ✅ **Jupyter Notebooks**: Exploratory data analysis and reporting
 - ✅ **RESTful API**: Endpoints for accessing data programmatically
 
+<br>
+
 ## Missing Features
 
-The following features are missing.   (Note: yhey are provided by CoPilot - (only) when trained for GenAI-Logic.)
+This readme was created by CoPilot, except for this an the next section, where we evaluated the implementation.
+
+The following features are missing.   (Note: they are provided by CoPilot - (only) when trained for GenAI-Logic.)
 
 - ❌ **API:** non-standard, no pagination, sorting, or optimistic locking.  Not multi-table.
 - ❌ **Web Interface:** no automatic joins, limited navigations (e.g., items for order), no add/update services
 - ❌ **Business Logic:** fails to meet basic requirements
-   * major bugs (e.g., changing an Orders Customer-id)
-   * elective (developers must call `src/services/credit_service.py`), and 
+   * major bugs (e.g., changing an Orders Customer-id -- not handled)
    * performs poorly (e.g., reads all orders/items to compute customer balance)
-   * an additional implementation is provided in `src/services/procedural_logic.py`
-      * Here, Copilot contrasts procedural vs. declarative logic:
+
+<br>
+## CoPilot concludes logic should be *declarative*
+
+An additional implementation is provided in `src/services/procedural_logic.py` - we asked CoPilot to implement logic via procedural code (not use Logic Bank).
+
+We then pointed out major bugs (noted above), which (unrequested) lead CoPilot to contrast procedural vs. declarative logic:
 
 ![procedural-logic](screenshots/procedural_logic.png)
+
+<br>
 
 ## Project Structure
 
