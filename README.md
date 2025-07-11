@@ -18,7 +18,7 @@ Create a project for this database: `samples/dbs/nw.sqlite`
 
 ## Missing Features
 
-> This readme was created by CoPilot, except for this and the next section, where we evaluated the implementation.
+> This readme was created by CoPilot, except for this section, where we evaluate the implementation.
 
 The following features are missing.   (Note: they are provided by CoPilot - (only) when trained for GenAI-Logic.)
 
@@ -27,16 +27,8 @@ The following features are missing.   (Note: they are provided by CoPilot - (onl
 - ❌ **Business Logic:** fails to meet basic requirements
    * major bugs (e.g., changing an Orders Customer-id -- not handled)
    * performs poorly (e.g., reads all orders/items to compute customer balance)
+   * for more information, [click here](https://github.com/ApiLogicServer/basic_demo/blob/main/logic/declarative-vs-procedural-comparison.md)
 
-<br>
-
-### CoPilot concludes logic should be *declarative*
-
-An additional implementation is provided in `src/services/procedural_logic.py` - we asked CoPilot to implement logic via procedural code (not use Logic Bank).
-
-We then pointed out major bugs (noted above), which (unrequested) lead CoPilot to contrast procedural vs. declarative logic:
-
-![procedural-logic](screenshots/procedural_logic.png)
 
 <br>
 
